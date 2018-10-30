@@ -11,6 +11,8 @@ frappe.then(async (res) => {
   //   'item_code': 'Test',
   //   'item_group': 'All Item Groups'
   // });
-  const deleted_item = await res.delete('Item', 'Test');
-  console.log(deleted_item);
+  // const deleted_item = await res.delete('Item', 'Test');
+  // console.log(deleted_item);
+  const item_group = await res.get_value('Item', 'item_name', { 'item_code': 'INTEREST' });
+  console.log(item_group);
 });

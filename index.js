@@ -39,6 +39,19 @@ FrappeRequest.prototype.get_doc = function(doctype, name) {
     .catch(err => console.error(err));
 }
 
+FrappeRequest.prototype.get_value = function(doctype, fieldname, filters) {
+  let data = {
+    'cmd': 'frappe.client.get_value',
+    'doctype': doctype,
+    'fieldname': fieldname,
+    'filters': JSON.stringify(filters)
+  };
+  return needle('post', `${this.url}`, data, { cookies: this.cookies })
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
+}
+
+
 FrappeRequest.prototype.insert = function(doc) {
   return needle('post', `${this.url}/api/resource/${doc.doctype}`, { data: JSON.stringify(doc) }, { cookies: this.cookies })
     .then(res => res.body.data)
