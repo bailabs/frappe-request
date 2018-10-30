@@ -47,10 +47,22 @@ FrappeRequest.prototype.get_value = function(doctype, fieldname, filters) {
     'filters': JSON.stringify(filters)
   };
   return needle('post', `${this.url}`, data, { cookies: this.cookies })
-    .then(res => console.log(res))
+    .then(res => res.body.data)
     .catch(err => console.error(err));
 }
 
+FrappeRequest.prototype.set_value = function(doctype, docname, fieldname, value) {
+  let data = {
+    'cmd': 'frappe.client.set_value',
+    'doctype': doctype,
+    'name': docname,
+    'fieldname': fieldname,
+    'value': value
+  };
+  return needle('post', `${this.url}`, data, { cookies: this.cookies })
+    .then(res => res.body.data)
+    .catch(err => console.error(err));
+}
 
 FrappeRequest.prototype.insert = function(doc) {
   return needle('post', `${this.url}/api/resource/${doc.doctype}`, { data: JSON.stringify(doc) }, { cookies: this.cookies })
