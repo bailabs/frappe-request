@@ -45,6 +45,12 @@ FrappeRequest.prototype.get_value = function(doctype, fieldname, filters) {
     .catch(err => console.error(err));
 }
 
+FrappeRequest.prototype.get_api = function(method) {
+  return needle('get', `${this.url}/api/method/${method}/`, { cookies: this.cookies })
+    .then(res => res.body)
+    .catch(err => console.error(err));
+}
+
 FrappeRequest.prototype.set_value = function(doctype, docname, fieldname, value) {
   let data = {
     'cmd': 'frappe.client.set_value',
