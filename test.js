@@ -14,5 +14,9 @@ frappe.then(async (res) => {
   // const deleted_item = await res.delete('Item', 'Test');
   // console.log(deleted_item);
   const item_group = await res.get_value('Item', 'item_name', { 'item_code': 'INTEREST' });
+  const customer = await res.set_value('Customer', 'Thesis', 'customer_name', 'Thesis Vamoy');
+  console.log(items);
+  console.log(interest);
   console.log(item_group);
+  console.log(customer);
 });
