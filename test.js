@@ -16,10 +16,12 @@ frappe.then(async (res) => {
   const item_group = await res.get_value('Item', 'item_name', { 'item_code': 'INTEREST' });
   const customer = await res.set_value('Customer', 'Thesis', 'customer_name', 'Thesis Vamoy');
   const proceed_pos = await res.get_api('pharmakit.utils.proceed_pos');
+  const test = await res.post_api('pharmakit.utils.test', { 'face': 'eyes' });
 
-  console.log(items);
-  console.log(interest);
-  console.log(item_group);
-  console.log(customer);
-  console.log(proceed_pos);
+  // console.log(items);
+  // console.log(interest);
+  // console.log(item_group);
+  // console.log(customer);
+  // console.log(proceed_pos);
+  // console.log(test);
 });
